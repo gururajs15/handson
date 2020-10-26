@@ -9,11 +9,21 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
     </head>
     <body>
-        <h1>xterm.js: xterm, in the browser</h1>
+        <h1>BoxLab - Unbox Your Programming Skills</h1>
         <div id="terminal-container"></div>
         <div>
           <h2>Actions</h2>
           <p>
+
+	         <input type = "button" onclick = "term.write('Paste text \n')" value = "Write">
+		  <form method="get" action="/paste">
+			  <input type="hidden" name="msg" value="pwd">
+			    <input type="submit" value="paste pwd" onclick = "term.focus()">
+		 </form>
+
+        <input type = "button" onclick = "term.write('\b \b')" value = "Enter">
+        <input type = "button" onclick = "ttyStream.write('ls \n')" value = "Enter1">
+        <input type = "button" onclick = "ttyStream.write('ls \n')" value = "Enter2">
             <label>Find next <input id="find-next"/></label>
             <label>Find previous <input id="find-previous"/></label>
           </p>
@@ -78,6 +88,12 @@
             </p>
         </div>
         <p><strong>Attention:</strong> The demo is a barebones implementation and is designed for the development and evaluation of xterm.js only. Exposing the demo to the public as is would introduce security risks for the host.</p>
-        <script src="dist/bundle.js" defer ></script>
+        <script src="dist/bundle.js" defer >
+//guru
+		term.writeln("Paste text");
+                term.writeln('***********************  Welcome to BoxLab :)  ***********************');
+	</script>
+	<input type = "button" onclick = "term.writeln('Paste text \n')" value = "Write">
+	<input type = "button" onclick = "term.write('\r')" value = "Enter">
     </body>
 </html>

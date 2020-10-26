@@ -4,14 +4,8 @@ var expressWs = require('express-ws')(app);
 var os = require('os');
 var pty = require('node-pty');
 var Docker = require('dockerode');
-var dockerHostIP = "135.17.180.132"
-//var dockerHostIP = "127.0.0.1"
-var dockerHostPort = 2375 
 var image='centos';
-//var docker = new Docker({socketPath: '/var/run/docker.sock'});
-  var ttyStream;
-  var term;
-var docker = new Docker({ host: dockerHostIP, port: dockerHostPort });
+var docker = new Docker({socketPath: '/var/run/docker.sock'});
 
 var terminals = {},
     logs = {},
@@ -19,55 +13,26 @@ var terminals = {},
 
 app.use('/build', express.static(__dirname + '/../build'));
 
-app.get('/linuxbasics.html', function(req, res){
-  res.sendFile(__dirname + '/linuxbasics.html');
-
-});
-
-app.get('/linuxcommands.html', function(req, res){
-  res.sendFile(__dirname + '/linuxcommands.html');
-
-});
-
-app.get('/home.html', function(req, res){
-  res.sendFile(__dirname + '/home.html');
-
-	image = req.query.image;
-        console.log('IMAGE inside home ' + image);
-
-});
-
-
-app.get('/paste', function(req, res){
-  //res.sendFile(__dirname + '/home.html');
-
-        msg = req.query.msg;
-	        if (ttyStream != null)
-	try {
-        console.log('Message to paste' + msg);
-
-	        if (ttyStream != null)
-     ttyStream.write(msg + '\n');} catch (e) { console.log(e); }
-//	term.focus();
-});
-
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/home.html');
+  //res.sendFile(__dirname + '/index.html');
 
  image = req.query.image;
 	console.log('IMAGE IS ' + image);
 });
 
-app.get('/index.html', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-
-// image = req.query.image;
-        console.log('IMAGE insied index ' + image);
-});
-
 app.get('/style.css', function(req, res){
   res.sendFile(__dirname + '/style.css');
 });
+
+app.get('/index.html', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/linuxbasics.html', function(req, res){
+  res.sendFile(__dirname + '/linuxbasics.html');
+});
+
 
 app.get('/dist/bundle.js', function(req, res){
   res.sendFile(__dirname + '/dist/bundle.js');
@@ -83,7 +48,7 @@ app.post('/terminals', function (req, res) {
       //image = req.params.image,
       term = pty.spawn(process.platform === 'win32' ? 'cmd.exe' : 'bash', [], {
         name: 'xterm-color',
-        cols: cols || 40,
+        cols: cols || 80,
         rows: rows || 24,
         cwd: process.env.PWD,
         env: process.env
@@ -91,6 +56,7 @@ app.post('/terminals', function (req, res) {
 console.log('IMAGE IS ' + image);
 //console.log('IMAGE IS ' + req.query.image);
 //console.log('IMAGE IS ' + req.body.image);
+if (image != null)
    try { docker.createContainer({
     Cmd: '/bin/sh',
     Image: image,
@@ -118,7 +84,7 @@ console.log('IMAGE IS ' + image);
           container: container
         };
         logs[container.id] = '';
-	  ttyStream.on('data', data => {
+        ttyStream.on('data', data => {
           console.log('[data]', data);
           logs[container.id] += data;
         });
@@ -143,7 +109,7 @@ app.post('/terminals/:pid/size', function (req, res) {
 
 app.ws('/terminals/:pid', function (ws, req) {
   var container = containers[req.params.pid].container;
-  ttyStream = containers[req.params.pid].tty;
+  var ttyStream = containers[req.params.pid].tty;
   console.log('Connected to container ' + container.id);
   ws.send(logs[container.id]);
 
@@ -158,11 +124,9 @@ app.ws('/terminals/:pid', function (ws, req) {
   ws.on('message', function(msg) {
     console.log('[message]', msg);
     ttyStream.write(msg);
-    //ttyStream.write('ls \n');
   });
   ws.on('close', function () {
     ttyStream.end();
-	  ttyStream=null;
     container.remove({ force: true }, function() {
       return console.log('container ' + container.id + ' removed');
     });
@@ -170,7 +134,6 @@ app.ws('/terminals/:pid', function (ws, req) {
     // Clean things up
     delete containers[container.id];
     delete logs[container.id];
-    //term.writeln("Your Boxlab environment has expired due to inactivity. Please refresh to get a new environment. Happy Labbing!");
   });
 });
 

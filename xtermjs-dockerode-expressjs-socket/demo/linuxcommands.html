@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <title>xterm.js demo</title>
+        <link rel="stylesheet" href="/build/xterm.css" />
+        <link rel="stylesheet" href="/build/addons/fullscreen/fullscreen.css" />
+        <link rel="stylesheet" href="style.css" />
+	        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+	<style>
+.button {
+  display: inline-block;
+  padding: 5px 5px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: 2px;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+    </head>
+    <body>
+          <p>
+	  <form method="get" action="/paste">
+         <h4> Step 1: Lets get into the bash shell using the bash command:  <b> <h4>
+                                 <input type="submit" class="button" value="bash" name="msg"> </h4>
+ </form>
+		  <form method="get" action="/paste">
+	 <h4> Step 2: pwd command shows the present working directory. Try by typing pwd on the terminal or click here:  <b> <h4>
+				 <input type="submit" class="button" value="pwd" name="msg"> </h4>
+ </form>
+
+ <form method="get" action="/paste">
+<h4> Step 3: ls — Use the "ls" command to know what files are in the directory you are in.” <b> <h4>
+<input type="submit" value="ls" class="button" name="msg"> </h4>
+</form>
+
+<form method="get" action="/paste">
+<h4> Step 4: ls -a will show all files including hidden files. <b> <h4>
+<input type="submit" class="button" value="ls -a" name="msg"> </h4>
+</form>
+
+<form method="get" action="/paste">
+<h4> Step 5: ls -lrt will show all details of files including permissions, modified date etc.. <b> <h4>
+<input type="submit" value="ls -lrt" class="button" name="msg"> </h4>
+</form>
+
+<form method="get" action="/paste">
+<h4> Step 6: "cd" command will go to a directory  <b> <h4>
+<input type="submit" value="cd var" class="button" name="msg"> </h4>
+</form>
+
+<form method="get" action="/paste">
+<h4>  Step 7: mkdir <directory name> will create a directory with given name. <b> <h4>
+<input type="submit" value="mkdir test" class="button" name="msg"> </h4>
+</form>
+<br> <i> Tip: Now run the ls command in step 3 to list all contents of current directory. You will see "test" directorycreated. <br></i>
+
+<form method="get" action="/paste">
+<h4> Step 8: rmdir <directory name>  will delete the given directory. <b> <h4>
+<input type="submit" value="rmdir test" class="button" name="msg"> </h4>
+</form>
+
+
+                   <form method="get" action="/paste">
+			 <h4> <br> <br> Good job! Now let us create a shell script and run it.
+				 <br>
+ <textarea cols='40' rows='8' name="msg">cat <<EOF > print.sh &#10;#!/bin/bash&#10;echo \$PWD&#10;echo $PWD&#10;EOF</textarea> <br>
+	         <input type="submit" value="Run above command">
+		 </form>
+
+        <script src="dist/bundle.js" defer >
+	</script>
+    </body>
+</html>

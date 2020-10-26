@@ -103,8 +103,6 @@ function createTerminal() {
     cursorBlink: optionElements.cursorBlink.checked,
     scrollback: parseInt(optionElements.scrollback.value, 10),
     tabStopWidth: parseInt(optionElements.tabstopwidth.value, 10),
-    fontSize: 19,
-    fontFamily: 'Ubuntu Mono, courier-new, courier, monospace',
     screenReaderMode: optionElements.screenReaderMode.checked
   });
   window.term = term;  // Expose `term` to window for debugging purposes
@@ -125,7 +123,7 @@ function createTerminal() {
   term.winptyCompatInit();
   term.fit();
   term.focus();
-  term.writeln('Welcome to Boxlab :) Learn by hands-on. Try 100+ experiments. Happy Labbing! '); //guru
+
   // fit is called within a setTimeout, cols and rows need this.
   setTimeout(function () {
     colsElement.value = term.cols;
@@ -152,7 +150,6 @@ function createTerminal() {
 function runRealTerminal() {
   term.attach(socket);
   term._initialized = true;
-  term.writeln('Welcome to Boxlab :) Learn by hands-on. Try 100+ experiments. Happy Labbing! ');
 }
 
 function runFakeTerminal() {
