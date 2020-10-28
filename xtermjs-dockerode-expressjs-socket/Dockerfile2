@@ -1,0 +1,36 @@
+#
+# Ubuntu Node.js Dockerfile
+#
+# https://github.com/dockerfile/ubuntu/blob/master/Dockerfile
+# https://docs.docker.com/examples/nodejs_web_app/
+#
+
+# Pull base image.
+FROM ubuntu:14.04
+
+# Install Node.js
+RUN apt-get install --yes curl
+RUN curl --silent --location https://deb.nodesource.com/setup_8.x | sudo bash -
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes build-essential
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/
+
+RUN cd /usr/src/app
+RUN npm install
+
+# Add the code
+COPY . /usr/src/app
+
+# Run the tests and build, to make sure everything is working nicely
+RUN npm run build && npm run test
+
+
+# Bundle app source
+# Trouble with COPY http://stackoverflow.com/a/30405787/2926832
+EXPOSE  3000
+
+#  Defines your runtime(define default command)
+# These commands unlike RUN (they are carried out in the construction of the container) are run when the container
+CMD ["node", "demo/app.js"]

@@ -1,16 +1,6 @@
 version: "3"
-
 services:
-  web:
-    build: .
-    volumes:
-      - ./:/usr/src/app
+  boxlab:
+    image: "gururajs15/boxlab:frontend"
     ports:
-      - ${XTERMJS_PORT:3000}:3000
-    command: ["npm", "start"]
-
-  watch:
-    build: .
-    volumes:
-      - ./:/usr/src/app
-    command: ["npm", "run", "watch"]
+      - "3096:3000"

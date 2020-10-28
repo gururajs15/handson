@@ -125,7 +125,7 @@ function createTerminal() {
   term.winptyCompatInit();
   term.fit();
   term.focus();
-  term.writeln('Welcome to Boxlab :) Learn by hands-on. Try 100+ experiments. Happy Labbing! '); //guru
+  //term.writeln('Welcome to Boxlab :) Learn by hands-on. Try 100+ experiments. Happy Labbing! '); //guru
   // fit is called within a setTimeout, cols and rows need this.
   setTimeout(function () {
     colsElement.value = term.cols;
@@ -152,10 +152,16 @@ function createTerminal() {
 function runRealTerminal() {
   term.attach(socket);
   term._initialized = true;
-  term.writeln('Welcome to Boxlab :) Learn by hands-on. Try 100+ experiments. Happy Labbing! ');
+  //term.writeln('Welcome to Boxlab :) Learn by hands-on. Try 100+ experiments. Happy Labbing! ');
+  term.writeln('***********************  Welcome to KylaLab :)  *******************************');
+  term.writeln('****Learn complex technologies by hands-on. Try 100+ Labs! Happy Labbing!******');
+  term.writeln('*************************A super Cool way to learn!****************************');
 }
 
 function runFakeTerminal() {
+
+        term.writeln("Your KylaLab environment has expired due to inactivity. Please refresh to get a new environment. Happy Labbing!");
+
   if (term._initialized) {
     return;
   }

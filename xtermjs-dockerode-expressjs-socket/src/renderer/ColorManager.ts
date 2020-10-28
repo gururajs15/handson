@@ -6,7 +6,7 @@
 import { IColorSet, IColorManager } from './Types';
 import { ITheme } from 'xterm';
 
-const DEFAULT_FOREGROUND = '#ffffff';
+const DEFAULT_FOREGROUND = '#FFFF00'; /* guru was white #FFFFFF */
 const DEFAULT_BACKGROUND = '#000000';
 const DEFAULT_CURSOR = '#ffffff';
 const DEFAULT_CURSOR_ACCENT = '#000000';
