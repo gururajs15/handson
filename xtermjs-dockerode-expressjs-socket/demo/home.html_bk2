@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+
+<html>
+   
+   <head>
+      <title> Box Lab</title>
+       <script type="text/javascript">
+ window.onclose  = function del_cookie("cokkieNamecid") {
+    document.cookie = name +
+    '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+        alert ("Cookie cleared");
+                }
+        </script>
+   </head>
+   <body> 
+      <iframe id="aframe1" name="aframe1" src="../linuxcommands.html"></iframe>
+      <iframe id="aframe2" name="aframe2" src="../terminal.html"></iframe>
+     <script type="text/javascript">
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+		name = "cokkieNamecid";
+		document.cookie = name +
+    '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+        alert ("Cookie cleared");
+        alert ("deleted");
+        });
+        </script> 
+   </body> 
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <title>xterm.js demo</title>
+        <link rel="stylesheet" href="/build/xterm.css" />
+        <link rel="stylesheet" href="/build/addons/fullscreen/fullscreen.css" />
+        <link rel="stylesheet" href="style.css" />
+	        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+    </head>
+    <body> <center>
+		    <h3> KylaLab - Cool Way to Learn, from basic Linux/Python to AI/ML. </h3> </center>
+	<p align = "right"> <form method="get" action="/close">
+                            <input type="submit" value="CLOSE ALL ACTIVE TERMINALS" onclick = "term.focus()">
+	</form> </p>
+        <div id="terminal-container"></div>
+	<br> <br>
+ <form method="get" action="/close">
+	 <input type="submit" value="CLOSE ALL ACTIVE TERMINALS" onclick = "term.focus()"> <br>
+                 </form>
+
+          </p>
+        <div>
+            <label>Find next <input id="find-next"/></label>
+            <label>Find previous <input id="find-previous"/></label>
+          </p>
+        </div>
+        <div>
+
+	  <h2></h2>
+          <p>
+            <label><input type="hidden" id="option-cursor-blink"> </label>
+          </p>
+          <p>
+            <label><input type="hidden" id="option-mac-option-is-meta"> </label>
+          </p>
+          <p>
+            <label>
+              <input type="hidden" id="option-cursor-style" value="block">
+            </label>
+          </p>
+          <p>
+            <label>
+              <input type="hidden" id="option-bell-style" value="none">
+            </label>
+          </p>
+          <p>
+            <label> <input type="hidden" id="option-scrollback" value="1000" /></label>
+          </p>
+          <p>
+            <label> <input type="hidden" id="option-tabstopwidth" value="8" /></label>
+          </p>
+
+	    <div>
+                <h3></h3>
+            <div>
+              <div style="display: inline-block; margin-right: 16px;">
+                <label for="cols"></label>
+                <input type="hidden" id="cols" value="87"/>
+              </div>
+              <div style="display: inline-block; margin-right: 16px;">
+                <label for="rows"></label>
+                <input type="hidden" id="rows" value="30"/>
+                <input type="hidden" id="image" name="image" />
+              </div>
+              <div style="display: inline-block; margin-right: 16px;">
+                <label for="padding"></label>
+                <input type="hidden" id="padding" value="0"/>
+              </div>
+            </div>
+          </div>
+
+<div>
+            <h3></h3>
+            <p>
+              <label><input type="hidden" id="option-screen-reader-mode" value="false"> </label>
+            </p>
+        </div>
+
+
+        <p><strong>..</strong> </p>
+        <script src="dist/bundle.js" defer >
+//guru
+		          term.writeln("Paste text");
+                term.writeln('***********************  Welcome to BoxLab :)  ***********************');
+        </script>
+	</script>
+    </body>
+</html>

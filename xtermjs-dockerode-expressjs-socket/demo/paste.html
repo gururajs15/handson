@@ -1,0 +1,22 @@
+<html>
+	<head>
+	<script type="text/javascript">
+
+	
+function handlePaste(msg) {
+  var clipboardData, pastedData;
+  clipboardData =  msg;
+  var term = document.getElementById('secondtextarea');
+  term.innerText = "test <br>1";
+			alert("test \n test");
+}
+
+	</script>
+
+	<body>
+		  <textarea id="mytextarea"></textarea>
+<textarea id="secondtextarea"></textarea>
+		<button onclick="handlePaste('test')">Try it</button>
+
+	</body>
+</html>

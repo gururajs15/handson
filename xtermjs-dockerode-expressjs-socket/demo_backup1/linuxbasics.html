@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+   
+   <head>
+	           <link rel="stylesheet" href="/build/xterm.css" />
+        <link rel="stylesheet" href="/build/addons/fullscreen/fullscreen.css" />
+        <link rel="stylesheet" href="style.css" />
+	   <script src="dist/bundle.js" defer > </script>
+	   <script src="main.js" defer > </script>
+	                   <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js"></script>
+
+      <title>BoxLab</title>
+      <body>
+	      <h3> Linux Basic commands </h3> <br> <br>
+	      <p> <h4> Get set go... Lab ready in a second :). <br> <br> In this excersise, you will practise some basic linux commands that are quite useful. Ready? <br> </h4>
+	      </p>
+	      <p> 
+	      
+	      <h4> 
+
+		      <form method="get" action="/paste">
+                        <input type="hidden" name="msg" value="pwd">
+                        <input type="submit" value="pwd" onclick = "term.focus()">
+		      </form> 
+		                            <form method="get" action="/paste"> 
+                        <input type="hidden" name="msg" value="ls -lrt">
+                        <input type="submit" value="ls -lrt" onclick = "term.focus()">
+                      </form>
+		                            <form method="get" action="/paste">
+                        <input type="hidden" name="msg" value="df -h">
+                        <input type="submit" value="df -h" onclick = "term.focus()">
+                      </form>
+		                            <form method="get" action="/paste">
+                          <input type="hidden" name="msg" value="service docker restart">
+                        <input type="submit" value="service docker restart" onclick = "term.focus()">
+</form>
+      </body>
+</html>

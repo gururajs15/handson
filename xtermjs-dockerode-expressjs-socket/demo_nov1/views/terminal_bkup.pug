@@ -1,0 +1,88 @@
+doctype html
+head
+  title xterm.js demo
+  link(rel='stylesheet' href='..//build/xterm.css')
+  link(rel='stylesheet' href='..//build/addons/fullscreen/fullscreen.css')
+  link(rel='stylesheet' href='../style.css')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js')
+h1 BoxLab - Unbox Your Programming Skills
+#terminal-container
+div
+  h2 Actions
+  p
+    input(type='button' onclick="term.write('Paste text \n')" value='Write')
+    form(method='get' action='/paste')
+      input(type='hidden' name='msg' value='pwd')
+      input(type='submit' value='paste pwd' onclick='term.focus()')
+    input(type='button' onclick="term.write('\b \b')" value='Enter')
+    input(type='button' onclick="ttyStream.write('ls \n')" value='Enter1')
+    input(type='button' onclick="ttyStream.write('ls \n')" value='Enter2')
+    label
+      | Find next 
+      input#find-next
+    label
+      | Find previous 
+      input#find-previous
+div
+  h2 Options
+  p
+    label
+      input#option-cursor-blink(type='checkbox')
+      |  cursorBlink
+  p
+    label
+      input#option-mac-option-is-meta(type='checkbox')
+      |  macOptionIsMeta
+  p
+    label
+      | cursorStyle
+      select#option-cursor-style
+        option(value='block') block
+        option(value='underline') underline
+        option(value='bar') bar
+  p
+    label
+      | bellStyle
+      select#option-bell-style
+        option(value='') none
+        option(value='sound') sound
+        option(value='visual') visual
+        option(value='both') both
+  p
+    label
+      | scrollback 
+      input#option-scrollback(type='number' value='1000')
+  p
+    label
+      | tabStopWidth 
+      input#option-tabstopwidth(type='number' value='8')
+  div
+    h3 Size
+    div
+      div(style='display: inline-block; margin-right: 16px;')
+        label(for='cols') Columns
+        input#cols(type='number')
+      div(style='display: inline-block; margin-right: 16px;')
+        label(for='rows') Rows
+        input#rows(type='number')
+        input#image(type='number' name='image')
+      div(style='display: inline-block; margin-right: 16px;')
+        label(for='padding') Padding
+        input#padding(type='number')
+  div
+    h3 Accessibility
+    p
+      label
+        input#option-screen-reader-mode(type='checkbox')
+        |  screenReaderMode
+  p
+    strong Attention:
+    |  The demo is a barebones implementation and is designed for the development and evaluation of xterm.js only. Exposing the demo to the public as is would introduce security risks for the host.
+  script(src='../dist/bundle.js' defer='')
+    //guru
+    //term.writeln("Paste text");
+    //term.writeln('***********************  Welcome to BoxLab :)  ***********************');
+  input(type='button' onclick="term.writeln('Paste text \n')" value='Write')
+  input(type='button' onclick="term.write('\r')" value='Enter')
+
